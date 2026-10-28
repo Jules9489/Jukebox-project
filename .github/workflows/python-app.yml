@@ -39,6 +39,7 @@ jobs:
         python backend.py
 
     - name: commit to the json
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: |
           git config --global user.name 'github-actions'
           git config --global user.email "github-actions@github.com"
