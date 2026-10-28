@@ -41,7 +41,7 @@ jobs:
     - name: commit to the json
       run: |
           git config --global user.name 'github-actions'
-          git config --global user.email '
+          git config --global user.email "github-actions@github.com"
           
           if ! git diff --cached --quiet; then
            git add songs.json
@@ -49,8 +49,4 @@ jobs:
            git push origin HEAD:main
           else
             echo "No changes to commit"
-<<<<<<< HEAD
-            fi
-=======
-            fi
->>>>>>> 8b68f9d63b499588c4596f1c1aec880dd026326d
+          fi
