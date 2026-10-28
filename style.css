@@ -1,0 +1,18 @@
+/* Styles for the Jukebox */
+body {
+    font-family:system-ui, -apple-system;
+    font-size: 16px;
+    margin: auto;
+
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center; 
+}
+
+h2 {
+    font-size: 30px;
+    text-align: left;
+    padding-left: 20px;
+}
