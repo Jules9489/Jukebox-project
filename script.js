@@ -26,7 +26,7 @@ console.log(audio);
 
 //slider
 var slider = document.getElementById("myRange");
-var output = document.getElementById("Value");
+var output = document.getElementById("value");
 
 output.innerHTML = slider.value;
 
@@ -36,6 +36,6 @@ slider.oninput = function() {
 
 slider.addEventListener("mousemove", function() {
     var x = slider.value;
-    var colour = "linear-gradient(90deg, black " + x + "%, gray " + x + "%";
+    var colour = "linear-gradient(90deg, black " + x + "%, gray " + x + "%)";
     slider.style.background = colour;
 });
