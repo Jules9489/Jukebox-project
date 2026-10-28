@@ -15,11 +15,11 @@ const Playbutton = document.querySelector(".play");
 const Pausebutton = document.querySelector(".pause");
 
 Playbutton.addEventListener("click", () => {
-    audio.play
+    audio.play();
 });
 
-Pausebuttonbutton.addEventListener("click", () => {
-    audio.pause
+Pausebutton.addEventListener("click", () => {
+    audio.pause();
 });
 
 console.log(audio);
