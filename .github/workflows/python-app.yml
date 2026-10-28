@@ -10,9 +10,7 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: read
   contents: write
-  contents: get
 
 jobs:
   build:
@@ -39,3 +37,16 @@ jobs:
     - name: run python
       run: |
         python backend.py
+
+    - name: commit to the json
+      run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email '
+          
+          if ! git diff --cached --quiet; then
+           git add songs.json
+           git commit -m 'Update songs.json'
+           git push origin HEAD:main
+          else
+            echo "No changes to commit"
+            fi
