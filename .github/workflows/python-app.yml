@@ -49,4 +49,8 @@ jobs:
            git push origin HEAD:main
           else
             echo "No changes to commit"
+<<<<<<< HEAD
             fi
+=======
+            fi
+>>>>>>> 8b68f9d63b499588c4596f1c1aec880dd026326d
