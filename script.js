@@ -1,4 +1,7 @@
 // Json reading
+let Songs = [];
+let index = 0;
+
 import data from "./songs.json" with { type: "json" };
 console.log(data); 
 
@@ -44,9 +47,6 @@ slider.addEventListener("mousemove", function() {
 });
 
 // song choosing
-let Songs = [];
-let index = 0;
-
 const player = document.getElementById("myAudio");
 const title = document.getElementById("title");
 
@@ -57,21 +57,21 @@ function playSong() {
     audio.play().catch(e => console.log("Playback interaction required"));
 };
 
-document.querySelector("Next").onclick = function() {
+document.querySelector(".Next").onclick = function() {
     if (index < Songs.length - 1 ) {
         index++;
         playSong();
     }
 };
 
-document.querySelector("Previous").onclick = function() {
+document.querySelector(".Previous").onclick = function() {
     if (index > 0) {
         index--;
         playSong();
     }
 };
 
-player.onended = function() {
+audio.onended = function() {
     if (index < Songs.length - 1) {
         index++;
         playSong();
