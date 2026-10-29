@@ -9,7 +9,7 @@ const list = document.getElementById("song-list");
 
 data.forEach(song => {
     list.innerHTML += `<li>${song.title} by ${song.artist}</li>`;
-    Songs.push(song.file);
+    Songs.push(`${song.artist} - ${song.title}.mp3`);
 });
 
 // Audio
@@ -56,6 +56,10 @@ function playSong() {
     title.innerText = "Playing: " + Songs[index];
     audio.play().catch(e => console.log("Playback interaction required"));
 };
+
+if (Songs.length > 0) {
+    playSong();
+}
 
 document.querySelector(".Next").onclick = function() {
     if (index < Songs.length - 1 ) {
