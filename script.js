@@ -49,21 +49,21 @@ let index = 0;
 const username = "Jules9489";
 const repo = "Jukebox-project";
 const folderPath = "Songs"; 
-const player = document.getElementById("player");
+const player = document.getElementById("myAudio");
 const title = document.getElementById("title");
 
 
 async function loadDynamicPlaylist() {
     try {
-        const response = await fetch(`https://github.com{username}/${repo}/contents/${folderPath}`);
+        const response = await fetch(`https://github.com/${username}/${repo}/contents/${folderPath}`);
         const files = await response.json();
         
         // Filter out only mp3 files and map them into the array
-        songs = files
+        Songs = files
             .filter(file => file.name.endsWith(".mp3"))
             .map(file => file.name);
 
-        if (songs.length > 0) {
+        if (Songs.length > 0) {
             playSong(); // Queue and play the first track automatically
         }
     } catch (error) {
@@ -74,9 +74,9 @@ async function loadDynamicPlaylist() {
 function playSong() {
     const currentfile = Song[index];
 
-    player.src = URL.createObjectURL(currentfile);
-    title.innerText = "playing: " + currentfile.name;
-    player.Play();
+    player.src = "Songs/" + currentfile;
+    title.innerText = "Playing: " + currentfile.replace(".mp3", "");
+    player.play();
 };
 
 document.querySelector("Next").onclick = function() {
@@ -94,7 +94,7 @@ document.querySelector("Previous").onclick = function() {
 };
 
 player.onended = function() {
-    if (index < song.length - 1) {
+    if (index < Songs.length - 1) {
         index++;
         playSong();
     }
