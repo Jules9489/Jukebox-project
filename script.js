@@ -112,19 +112,24 @@ async function updateQueue() {
 }
 
 document.getElementById("add-to-queue").onclick = async () => {
-    if (!choice.value) return;
+    console.log("Button clicked!");
+    console.log("Selected song:", choice.value);
 
-    await db.from("queue").insert({ song_file: choice.value });
+    if (!choice.value) {
+        alert("Choose a song first!");
+        return;
+    }
+
+    const { error } = await db
+        .from("queue")
+        .insert({ song_file: choice.value });
+
+    if (error) {
+        alert("Supabase error: " + error.message);
+        console.error(error);
+        return;
+    }
+
+    alert("Song added!");
     updateQueue();
 };
-
-db.channel("queue")
-    .on("postgres_changes", {
-        event: "INSERT",
-        schema: "public",
-        table: "queue"
-    }, updateQueue)
-    .subscribe();
-
-updateQueue();
-
