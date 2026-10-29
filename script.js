@@ -6,6 +6,7 @@ const list = document.getElementById("song-list");
 
 data.forEach(song => {
     list.innerHTML += `<li>${song.title} by ${song.artist}</li>`;
+    Songs.push(song.file);
 });
 
 // Audio
@@ -46,37 +47,14 @@ slider.addEventListener("mousemove", function() {
 let Songs = [];
 let index = 0;
 
-const username = "Jules9489";
-const repo = "Jukebox-project";
-const folderPath = "Songs"; 
 const player = document.getElementById("myAudio");
 const title = document.getElementById("title");
 
-
-async function loadDynamicPlaylist() {
-    try {
-        const response = await fetch(`https://github.com/${username}/${repo}/contents/${folderPath}`);
-        const files = await response.json();
-        
-        // Filter out only mp3 files and map them into the array
-        Songs = files
-            .filter(file => file.name.endsWith(".mp3"))
-            .map(file => file.name);
-
-        if (Songs.length > 0) {
-            playSong(); // Queue and play the first track automatically
-        }
-    } catch (error) {
-        console.error("Error reading folder dynamically:", error);
-    }
-};
-
 function playSong() {
-    const currentfile = Song[index];
-
-    player.src = "Songs/" + currentfile;
-    title.innerText = "Playing: " + currentfile.replace(".mp3", "");
-    player.play();
+    // Use your existing "audio" constant defined at the top of your file
+    audio.src = "Songs/" + Songs[index]; 
+    title.innerText = "Playing: " + Songs[index];
+    audio.play().catch(e => console.log("Playback interaction required"));
 };
 
 document.querySelector("Next").onclick = function() {
