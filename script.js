@@ -46,21 +46,28 @@ slider.addEventListener("mousemove", function() {
 let Songs = [];
 let index = 0;
 
-const folderPicker = document.getElementById("folderPicker");
+const username = "Jules9489";
+const repo = "Jukebox-project";
+const folderPath = "Songs"; 
 const player = document.getElementById("player");
 const title = document.getElementById("title");
 
 
-folderPicker.onchange = function(event) {
-    const allfiles = Array.from(event.target.files);
+async function loadDynamicPlaylist() {
+    try {
+        const response = await fetch(`https://github.com{username}/${repo}/contents/${folderPath}`);
+        const files = await response.json();
+        
+        // Filter out only mp3 files and map them into the array
+        songs = files
+            .filter(file => file.name.endsWith(".mp3"))
+            .map(file => file.name);
 
-    Songs = allfiles.filter(file => file.name.endswith(".mp3"));
-
-    if (Songs.length > 0) {
-        index = 0;
-        playSong();
-    } else{
-        title.innnerText = "No files found";
+        if (songs.length > 0) {
+            playSong(); // Queue and play the first track automatically
+        }
+    } catch (error) {
+        console.error("Error reading folder dynamically:", error);
     }
 };
 
@@ -70,16 +77,16 @@ function playSong() {
     player.src = URL.createObjectURL(currentfile);
     title.innerText = "playing: " + currentfile.name;
     player.Play();
-}
+};
 
-document.getElementById("Next").onclick = function() {
+document.querySelector("Next").onclick = function() {
     if (index < Songs.length - 1 ) {
         index++;
         playSong();
     }
 };
 
-document.getElementById("Previous").onclick = function() {
+document.querySelector("Previous").onclick = function() {
     if (index > 0) {
         index--;
         playSong();
