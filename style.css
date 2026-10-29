@@ -78,3 +78,17 @@ p {
     border-radius: 50%;
     cursor: pointer;
 }
+
+.h3{
+    position: absolute;
+    text-align: right;
+    font-size: 40px;
+}
+.p1 {
+    position: absolute;
+    text-align: right;
+}
+.ol1 {
+    position: absolute;
+    text-align: right;
+}

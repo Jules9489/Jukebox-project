@@ -1,3 +1,6 @@
+import { createClient } from
+    "https://esm.sh/@supabase/supabase-js@2";
+
 // Json reading
 let Songs = [];
 let index = 0;
@@ -77,7 +80,51 @@ document.querySelector(".Previous").onclick = function() {
 
 audio.onended = function() {
     if (index < Songs.length - 1) {
-        index++;
+        index++; 
         playSong();
     }
 };
+
+//supabase
+
+const db = createClient(
+    "https://supabase.com/dashboard/project/ibfivsobbilqljducnug",
+    "sb_publishable_PyVOsGtxNnFeyLnaXu0hDQ_tVmTb7F1"
+)
+
+const choice = document.getElementById("song-choice");
+const queue = document.getElementById("shared-queue-list");
+
+data.forEach(song => {
+    choice.innerHTML += `<option value="${song.file}">${song.title} by ${song.artist}</option>`;
+});
+
+async function updateQueue() {
+    const { data: songs } = await db.from("queue").select("*").order("id");
+
+    queue.innerHTML = "";
+
+    songs.forEach(song => {
+        const li = document.createElement("li");
+        li.textContent = song.song_file;
+        queue.appendChild(li);
+    });
+}
+
+document.getElementById("add-to-queue").onclick = async () => {
+    if (!choice.value) return;
+
+    await db.from("queue").insert({ song_file: choice.value });
+    updateQueue();
+};
+
+db.channel("queue")
+    .on("postgres_changes", {
+        event: "INSERT",
+        schema: "public",
+        table: "queue"
+    }, updateQueue)
+    .subscribe();
+
+updateQueue();
+

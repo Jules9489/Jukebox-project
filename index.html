@@ -11,7 +11,7 @@
     <body>
         <div>
 
-            <h1>Jukebox</h1>
+            <h1>🎵Jukebox🎵</h1>
             <h2>Songs: </h2>
             <ol id="song-list"></ol>
             <div class="player-container">
@@ -31,7 +31,22 @@
                 <input type="range" min="1" max="100" value="1" id="myRange" class="slider">
                 <p>Value: <span id="value"></span></p>
            </div>
+           
+           <div class="shared-queue">
+             <h2>Request a song</h2>
 
+             <select id="song-choice">
+                <option value="">Choose a song...</option>
+             </select>
+
+             <button id="add-to-queue">Add to queue</button>
+
+             <p1 id="queue-message" aria-live="polite"></p1>
+
+             <h3>Shared queue</h3>
+
+             <ol1 id="shared-queue-list"></ol1>
+            </div>
             
 
         </div>
