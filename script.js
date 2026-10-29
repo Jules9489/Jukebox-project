@@ -88,7 +88,7 @@ audio.onended = function() {
 //supabase
 
 const db = createClient(
-    "https://supabase.com/dashboard/project/ibfivsobbilqljducnug",
+    "https://ibfivsobbilqljducnug.supabase.co",
     "sb_publishable_PyVOsGtxNnFeyLnaXu0hDQ_tVmTb7F1"
 )
 
