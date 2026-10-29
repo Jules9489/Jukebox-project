@@ -3,27 +3,36 @@
     <head>
         <link rel="stylesheet" href="style.css"> 
         <script type="module" src="script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <title>Jukebox</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div>
+
             <h1>Jukebox</h1>
             <h2>Songs: </h2>
             <ol id="song-list"></ol>
+            <div class="player-container">
+                <input type="file" id="folderPicker" webkitdirectory directory multiple>
+                <audio id="myAudio" controls></audio>
 
-            <audio controls>
-                <source src="./Songs/Lovejoy - Baptism.mp3">
-            </audio>
+                <button class="play">Play</button>
+                <button class="pause">Pause</button>
+                <button class="Previous">Previous</button>
+                <button class="Next">Next</button>
 
-            <button class="play">Play</button>
-            <button class="pause">Pause</button>
+                <p id="title"></p>
+            </div>
+        
 
             <div class="slideContainer">
                 <input type="range" min="1" max="100" value="1" id="myRange" class="slider">
                 <p>Value: <span id="value"></span></p>
-            </div>
+           </div>
+
+            
 
         </div>
     </body>
